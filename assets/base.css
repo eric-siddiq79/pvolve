@@ -775,9 +775,13 @@ h1,
   font-weight: var(--font-h1--weight);
   font-size: var(--font-h1--size);
   line-height: var(--font-h1--line-height);
-  letter-spacing: var(--font-h1--letter-spacing);
+  letter-spacing: var(--font-h1--letter-spacing-m);
   text-transform: var(--font-h1--case);
   color: var(--color, var(--font-h1-color));
+
+  @media (min-width: 992px) {
+    letter-spacing: var(--font-h1--letter-spacing);
+  }
 }
 
 @media screen and (max-width: 1200px) {

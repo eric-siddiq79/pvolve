@@ -137,46 +137,61 @@
     --max-width--display-tight: 5ch;
 
     /* Letter-spacing / Tracking */
-    --letter-spacing--display-tight: -0.03em;
-    --letter-spacing--display-normal: 0em;
-    --letter-spacing--display-loose: 0.03em;
+    --letter-spacing--display-tightest: -0.188rem;
+    --letter-spacing--display-tighter: -0.03rem;
+    --letter-spacing--display-tight: -0.1rem;
+    --letter-spacing--display-snug: -0.069rem;
+    --letter-spacing--display-normal: 0rem;
+    --letter-spacing--display-loose: 0.03rem;
 
-    --letter-spacing--heading-tight: -0.03em;
-    --letter-spacing--heading-normal: 0em;
-    --letter-spacing--heading-loose: 0.03em;
+    --letter-spacing--heading-tightest: -0.188rem;
+    --letter-spacing--heading-tighter: -0.03rem;
+    --letter-spacing--heading-tight: -0.1rem;
+    --letter-spacing--heading-snug: -0.069rem;
+    --letter-spacing--heading-normal: 0rem;
 
-    --letter-spacing--body-tight: -0.03em;
-    --letter-spacing--body-normal: 0em;
-    --letter-spacing--body-loose: 0.03em;
+    --letter-spacing--body-tightest: -0.188rem;
+    --letter-spacing--body-tighter: -0.03rem;
+    --letter-spacing--body-tight: -0.1rem;
+    --letter-spacing--body-snug: -0.069rem;
+    --letter-spacing--body-normal: 0rem;
+    
+    
 
     /* Line height / Leading */
     --line-height: 1;
 
     --line-height--display-tight: 1;
-    --line-height--display-normal: 1.1;
+    --line-height--display-normal: 1;
     --line-height--display-loose: 1.2;
+    --line-height--display-loosest: 1.3;
 
-    --line-height--heading-tight: 1.15;
-    --line-height--heading-normal: 1.25;
-    --line-height--heading-loose: 1.35;
+    --line-height--heading-tight: 1;
+    --line-height--heading-normal: 1;
+    --line-height--heading-loose: 1.2;
+    --line-height--heading-loosest: 1.3;
 
-    --line-height--body-tight: 1.2;
-    --line-height--body-normal: 1.4;
-    --line-height--body-loose: 1.6;
+    --line-height--body-tight: 1;
+    --line-height--body-normal: 1;
+    --line-height--body-loose: 1.2;
+    --line-height--body-loosest: 1.3;
 
     /* Typography presets */
     {% liquid
       assign font_sizes = "paragraph, h1, h2, h3, h4, h5, h6" | split: ", "
-      assign fluid_size_cutoff = 48
+      assign fluid_size_in_vw_cutoff = 48
       assign absolute_font_size_min = 10
 
       comment
         Build an array of font sizes and sort it
       endcomment
       assign font_size_values = ''
+      assign font_size_values_m = '' 
       for font_size in font_sizes
         assign size_setting = 'type_size_[font_size]' | replace: '[font_size]', font_size
+        assign size_setting_m = size_setting | append: '_m';
         assign size_setting_value = settings[size_setting] | times: 1
+        assign size_setting_value_m = settings[size_setting_m] | times: 1
 
         comment
           If the font size is less than 100, pad it with a 0
@@ -184,62 +199,35 @@
         endcomment
         if size_setting_value < 100
           assign size_setting_value = '0[size_setting_value]' | replace: '[size_setting_value]', size_setting_value
+          assign size_setting_value_m = '0[size_setting_value_m]' | replace: '[size_setting_value_m]', size_setting_value_m
         endif
 
         assign font_size_values = font_size_values | append: '[size_setting_value],' | replace: '[size_setting_value]', size_setting_value
+        assign font_size_values_m = font_size_values | append: '[size_setting_value_m],' | replace: '[size_setting_value_m]', size_setting_value_m
       endfor
 
-      assign font_size_values = font_size_values | split: ',' | uniq | sort_natural
+      assign font_size_values = font_size_values | split: ',' | uniq | sort_natural;
+      assign font_size_values_m = font_size_values_m | split: ',' | uniq | sort_natural;
 
       comment
         For each font size S, find the next smaller size S-1, and determine the minimum for S
         The calculation depends on the size of S-1 (over or under the cutoff)
       endcomment
-      for font_size in font_sizes
+       for font_size in font_sizes
         assign size_setting = 'type_size_[font_size]' | replace: '[font_size]', font_size
+        assign size_setting_m = size_setting | append: '_m'
+
         assign font_size_value = settings[size_setting] | times: 1
-        assign font_size_string = '[font_size_value]' | replace: '[font_size_value]', font_size_value
-        assign index = font_size_values | find_index: font_size_string
+        assign font_size_value_m = settings[size_setting_m] | times: 1
 
-        if font_size_value >= fluid_size_cutoff
+        comment
+          Fluid-size calculation: how much scaling occurs between min and max
+        endcomment
+        assign fluid_size = font_size_value | times: 0.1
 
-          comment
-            Calculate the minimum size for each font size
-          endcomment
-          assign fluid_font_size_min = font_size_value
-
-          if index == 0
-            assign fluid_font_size_min = absolute_font_size_min
-          else
-            assign next_font_size_index = index | minus: 1
-            assign next_font_size_value = font_size_values[next_font_size_index]
-            assign next_font_size_value_number = next_font_size_value | times: 1
-
-            comment
-              If the next bigger font size under the fluid cutoff, we use keep a 4px buffer
-            endcomment
-            if next_font_size_value_number < fluid_size_cutoff
-              assign fluid_font_size_min = next_font_size_value_number | plus: 4
-              if font_size_value < fluid_font_size_min
-                assign fluid_font_size_min = font_size_value
-              endif
-            else
-              assign fluid_font_size_min = next_font_size_value | times: 1
-            endif
-          endif
-
-          comment
-            Calculate the fluid and maximum size for each font size
-          endcomment
-          assign fluid_size_min_rem = fluid_font_size_min | divided_by: 16.0
-          assign fluid_size = font_size_value | times: 0.1
-          assign fluid_size_max_rem = font_size_value | divided_by: 16.0
-
-          echo '--font-size--[font_size]: clamp([fluid_size_min_rem]rem, [fluid_size]vw, [fluid_size_max_rem]rem);' | replace: '[font_size]', font_size | replace: '[fluid_size_min_rem]', fluid_size_min_rem | replace: '[fluid_size]', fluid_size | replace: '[fluid_size_max_rem]', fluid_size_max_rem
-        else
-          assign fluid_size_rem = font_size_value | divided_by: 16.0
-          echo '--font-size--[font_size]: [fluid_size_rem]rem;' | replace: '[font_size]', font_size | replace: '[fluid_size_rem]', fluid_size_rem
-        endif
+        assign min_size_rem = font_size_value_m | divided_by: 16.0
+        assign max_size_rem = font_size_value | divided_by: 16.0
+        echo '--font-size--[font_size]: clamp([min_size_rem]rem, [fluid_size]vw, [max_size_rem]rem);'| replace: '[font_size]', font_size | replace: '[min_size_rem]', min_size_rem | replace: '[fluid_size]', fluid_size | replace: '[max_size_rem]', max_size_rem
       endfor
 
       assign type_presets = "paragraph, h1, h2, h3, h4, h5, h6" | split: ", "
@@ -264,9 +252,11 @@
           assign preset_weight = '--font-[preset_font]--weight' | replace: '[preset_font]', settings[preset_font_id]
           assign preset_case = 'type_case_[preset_name]' | replace: '[preset_name]', preset_name
           assign preset_letter_spacing = 'type_letter_spacing_[preset_name]' | replace: '[preset_name]', preset_name
+          assign preset_letter_spacing_m = 'type_letter_spacing_[preset_name]_m' | replace: '[preset_name]', preset_name
 
           echo '--font-[preset_name]--weight: var([preset_weight]);' | replace: '[preset_name]', preset_name | replace: '[preset_weight]', preset_weight
           echo '--font-[preset_name]--letter-spacing: var(--letter-spacing--[preset_letter_spacing]);' | replace: '[preset_name]', preset_name | replace: '[preset_letter_spacing]', settings[preset_letter_spacing]
+          echo '--font-[preset_name]--letter-spacing-m: var(--letter-spacing--[preset_letter_spacing_m]);' | replace: '[preset_name]', preset_name | replace: '[preset_letter_spacing_m]', settings[preset_letter_spacing_m]
         endif
 
         echo '--font-[preset_name]--size: var([preset_size]);' | replace: '[preset_name]', preset_name | replace: '[preset_size]', preset_size

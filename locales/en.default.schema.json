@@ -513,6 +513,7 @@
     "lipstick": "Lipstick",
     "lock": "Lock",
     "loose": "Loose",
+    "loosest": "Loosest",
     "lowercase": "lowercase",
     // Clothing size Medium, used in product filters
     "m": "M",
@@ -645,6 +646,9 @@
     "thumbnails": "Thumbnails",
     // Typography spacing option for line height and letter spacing
     "tight": "Tight",
+    "tighter": "Tighter",
+    "tightest": "Tightest",
+    "snug": "Snug",
     "tiktok": "TikTok",
     "top": "Top",
     "top_left": "Top left",
@@ -666,7 +670,7 @@
     // Icon option for washing machine or laundry symbol
     "washing": "Washing",
     "wide": "Wide",
-    "youtube": "YouTube"
+    "youtube": "YouTube",
   },
   "settings": {
     "accordion": "Accordion",
@@ -848,10 +852,12 @@
     "left_padding": "Left padding",
     "length": "Length",
     "letter_spacing": "Letter spacing",
+    "letter_spacing_mobile": "Letter spacing (Mobile)",
     "limit_content_width": "Limit content width",
     "limit_media_to_screen_height": "Constrain to screen height",
     "limit_product_details_width": "Limit product details width",
     "line_height": "Line height",
+    "line_height_mobile": "Line height (Mobile)",
     "link": "Link",
     "custom_link": "Custom link",
     "link_preset": "Link preset",
@@ -1001,7 +1007,7 @@
     "show_tax_info": "Tax information",
     // Font size or element dimensions setting
     "size": "Size",
-    "size_mobile": "Mobile size",
+    "size_mobile": "Size (Mobile)",
     "slide_spacing": "Slide gap",
     "slide_width": "Slide width",
     "slideshow_fullwidth": "Full width slides",
