@@ -17,10 +17,10 @@
         "announcement_BxgCk9": {
           "type": "_announcement",
           "settings": {
-            "text": "Welcome to our store",
+            "text": "Free delivery within US on orders $100+",
             "link": "",
             "font": "var(--font-subheading--family)",
-            "font_size": "0.75rem",
+            "font_size": "0.625rem",
             "weight": "",
             "letter_spacing": "normal",
             "case": "none"
@@ -34,11 +34,11 @@
       "name": "t:names.announcement_bar",
       "settings": {
         "speed": 5,
-        "section_width": "page-width",
-        "color_scheme": "scheme-1",
+        "section_width": "full-width",
+        "color_scheme": "scheme-da9468d8-6c38-4eee-a48e-288b7929bfee",
         "divider_width": 1,
-        "padding-block-start": 15,
-        "padding-block-end": 15
+        "padding-block-start": 8,
+        "padding-block-end": 8
       }
     },
     "header_section": {
@@ -76,24 +76,82 @@
             "drawer_accordion_expand_first": false,
             "drawer_dividers": false
           },
-          "blocks": {}
+          "blocks": {
+            "header_menu_item_LncVKg": {
+              "type": "_header-menu-item",
+              "name": "Menu Item",
+              "settings": {
+                "title": "Shop",
+                "url": "shopify://collections"
+              },
+              "blocks": {
+                "header_sub_menu_EbX4yU": {
+                  "type": "_header-sub-menu",
+                  "name": "Menu",
+                  "settings": {
+                    "menu": ""
+                  },
+                  "blocks": {}
+                },
+                "header_sub_menu_card_etP9Ac": {
+                  "type": "_header-sub-menu-card",
+                  "name": "Menu Card",
+                  "settings": {
+                    "image": "shopify://shop_images/sculpt-9.webp",
+                    "title": "",
+                    "url": ""
+                  },
+                  "blocks": {}
+                },
+                "header_sub_menu_card_qXGHWR": {
+                  "type": "_header-sub-menu-card",
+                  "name": "Menu Card",
+                  "settings": {
+                    "image": "shopify://shop_images/equipment.webp",
+                    "title": "",
+                    "url": ""
+                  },
+                  "blocks": {}
+                },
+                "header_sub_menu_card_MTyGJY": {
+                  "type": "_header-sub-menu-card",
+                  "name": "Menu Card",
+                  "settings": {
+                    "image": "shopify://shop_images/quiz.webp",
+                    "title": "",
+                    "url": ""
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "header_sub_menu_EbX4yU",
+                "header_sub_menu_card_etP9Ac",
+                "header_sub_menu_card_qXGHWR",
+                "header_sub_menu_card_MTyGJY"
+              ]
+            }
+          },
+          "block_order": [
+            "header_menu_item_LncVKg"
+          ]
         }
       },
       "settings": {
-        "logo_position": "left",
+        "logo_position": "center",
         "menu_position": "left",
         "menu_row": "top",
-        "show_search": true,
+        "show_search": false,
         "search_position": "right",
         "search_row": "top",
-        "show_country": true,
+        "show_country": false,
         "country_selector_style": false,
-        "show_language": true,
+        "show_language": false,
         "localization_font": "heading",
         "localization_font_size": "0.875rem",
         "localization_position": "right",
         "localization_row": "top",
-        "section_width": "page-width",
+        "section_width": "full-width",
         "section_height": "standard",
         "enable_sticky_header": "always",
         "divider_width": 0,
@@ -102,7 +160,7 @@
         "color_scheme_top": "scheme-1",
         "color_scheme_bottom": "",
         "color_scheme_transparent": "scheme-6",
-        "enable_transparent_header_home": false,
+        "enable_transparent_header_home": true,
         "home_color_scheme": "inverse",
         "enable_transparent_header_product": false,
         "product_color_scheme": "default",
