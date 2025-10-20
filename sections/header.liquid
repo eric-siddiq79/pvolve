@@ -43,12 +43,20 @@
     endif
   endif
 
-  capture logo
+   capture logo
     content_for 'block', type: '_header-logo', id: 'header-logo'
   endcapture
 
   capture menu
-    content_for 'block', type: '_header-mega-menu', id: 'header-logo'
+    content_for 'block', type: '_header-menu', id: 'header-menu'
+  endcapture
+
+  capture mobile_menu
+    content_for 'block', type: '_header-menu', id: 'header-menu', variant: 'mobile'
+  endcapture
+
+  capture navigation_bar
+    content_for 'block', type: '_header-menu', id: 'header-menu', variant: 'navigation_bar', transparent: transparent
   endcapture
 
   capture actions
@@ -629,6 +637,16 @@
       margin-top: calc(var(--header-height) * var(--transparent-header-offset-boolean) * -1);
     }
   }
+
+  .header-menu__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
 {% endstylesheet %}
 
 {% unless request.design_mode %}

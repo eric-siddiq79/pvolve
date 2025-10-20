@@ -1,10 +1,35 @@
 
 
-<div class="mega-menu">
-  <ul class="menu-list">
+<div class="header-menu-container">
+  <ul class="header-menu__list list-unstyled">
     {% content_for 'blocks' %}
   </ul>
 </div>
+{% stylesheet %}
+  .submenu-container {
+        position: absolute;
+        left: 0;
+        top: 100%;
+        width: 100%;
+        background-color: var(--color-background);
+        display: none;
+    }
+    
+    .submenu-container__grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1px;
+    }
+
+    .sub-menu__col {
+        padding: 24px;
+        outline: 1px solid #A5A1A1;
+    }
+
+    .sub-menu__link {
+      color: rgba(var(--links));
+    }
+{% endstylesheet %}
 
 {% schema %}
 {

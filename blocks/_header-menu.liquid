@@ -63,7 +63,12 @@
       style="--submenu-animation-speed: {{ animation_speed }}ms;"
     >
       <div class="header-menu__inner">
-        {%- render 'header-menu' %}
+        <div 
+          class="header-menu-list"
+          style="--nav-font-size: {{ block.settings.type_font_primary_size }};"
+        >
+          {% content_for 'blocks'%}
+        </div>
       </div>
 
       <script
@@ -73,8 +78,13 @@
       ></script>
     </header-menu>
 {% endcase %}
-
 {% stylesheet %}
+  
+  .header-menu__link {
+    font-size: var(--nav-font-size);
+    color: rgba(var(--color-foreground-rgb))
+  }
+
   .menu-list--mobile {
     &.menu-list {
       display: grid;
@@ -589,12 +599,20 @@
     /* preserves the inherited grid layout when this submenu wrapper is used */
     display: contents;
   }
+
+  .header-menu-list {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
 {% endstylesheet %}
 
 {% schema %}
 {
   "name": "t:names.menu",
   "tag": null,
+  "blocks": [{"type": "_header-menu-item"}, {"type": "button"}],
   "settings": [
     {
       "type": "link_list",

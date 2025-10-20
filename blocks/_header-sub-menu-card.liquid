@@ -1,15 +1,15 @@
 {% if block.settings.image != blank %}
-    <li class="menu-list__item">
-        <div class="menu-card">
-            <div class="menu-card__figure">
+    <div class="sub-menu__col">
+        <div class="sub-menu-card">
+            <div class="sub-menu-card__figure">
                 {{ block.settings.image | image_url: width: 312, height: 388 |  image_tag }}
             </div>
-            <div class="menu-card__content">
-                <h3 class="menu-card__title">{{ block.settings.title }}</h3>
-                <a href="{{ block.settings.url }}" class="menu-card__link">{{ block.settings.link }}</a>
+            <div class="sub-menu-card__content">
+                <h3 class="sub-menu-card__title">{{ block.settings.title }}</h3>
+                <a href="{{ block.settings.url }}" class="sub-menu-card__link">{{ block.settings.link }}</a>
             </div>
         </div>
-    </li>    
+    </div>    
 {% endif %}
 
 
