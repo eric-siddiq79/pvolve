@@ -7,6 +7,13 @@
 <header-actions
   {{- block.shopify_attributes -}}
 >
+  <a
+      href="#"
+      class="header-actions__action"
+    >
+      <span>Find a Studio</span>
+    </a>
+
   {% if shop.customer_accounts_enabled %}
     {% render 'account-popover' %}
     <div class="hide lg:block">
@@ -36,6 +43,8 @@
     --cart-font-size--sm: var(--font-size--sm);
     --cart-font-size--md: var(--font-size--md);
     --cart-font-size--2xl: var(--font-size--2xl);
+    display: flex;
+    align-items: center;
   }
 
   .cart-drawer__dialog {
@@ -194,6 +203,8 @@
 
   header-actions {
     display: flex;
+    font-family: var(--font-body--family);
+    font-size: var(--font-size--sm);
 
     @media screen and (max-width: 749px) {
       justify-self: flex-end;
@@ -210,6 +221,7 @@
     cursor: pointer;
     display: flex;
     justify-content: center;
+    align-items: center;
   }
 
   .header-actions__action .svg-wrapper {

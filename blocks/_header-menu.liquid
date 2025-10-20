@@ -81,8 +81,24 @@
 {% stylesheet %}
   
   .header-menu__link {
+    position: relative;
     font-size: var(--nav-font-size);
-    color: rgba(var(--color-foreground-rgb))
+    color: rgba(var(--color-foreground-rgb));
+
+    &::after {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: -12px;
+      bottom: -12px;
+      cursor: pointer;
+      content: '';
+    }
+
+    &:hover ~ .submenu-container {
+      opacity: 1;
+      visibility: visible;
+    }
   }
 
   .menu-list--mobile {
