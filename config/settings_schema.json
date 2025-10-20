@@ -373,7 +373,26 @@
         "type": "font_picker",
         "id": "type_accent_font",
         "default": "anonymous_pro_n4",
-        "label": "t:options.accent"
+        "label": "t:options.accent",
+      },
+      {
+        "type": "checkbox",
+        "id": "type_font_custom",
+        "label": "t:options.custom_font",
+        "default": false
+      },
+      {
+        "type": "select",
+        "id": "type_select_font",
+        "default": "Stevie Sans",
+        "label": "t:options.select_font",
+        "options": [
+          {
+            "value": "Stevie Sans",
+            "label": "Stevie Sans"
+          }
+        ],
+        "visible_if": "{{ settings.type_font_custom }}"
       },
       {
         "type": "header",

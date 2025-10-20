@@ -1,0 +1,34 @@
+
+{% content_for 'blocks' %}
+
+{% schema %}
+{
+    "name": "Menu Item",
+    "blocks": [{"type": "_header-sub-menu"}, {"type": "_header-sub-menu-card"}],
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Label"
+        },
+        {
+            "type": "url",
+            "id": "url",
+            "label": "Link"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Menu Item",
+            "blocks": [
+                {
+                    "type": "_header-sub-menu"
+                },
+                {
+                    "type": "_header-sub-menu-card"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

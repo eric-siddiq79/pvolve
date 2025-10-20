@@ -1,42 +1,40 @@
 {% # theme-check-disable %}
-{%- unless settings.type_body_font.system? -%}
+{% if settings.type_font_custom %}
   <link
     rel="preload"
     as="font"
-    href="{{ settings.type_body_font | font_url }}"
+    href="{{ 'stevie-sans.woff2' | asset_url }}"
     type="font/woff2"
     crossorigin
-    fetchpriority="low"
+    fetchpriority="high"
   >
-{%- endunless -%}
-{%- unless settings.type_subheading_font.system? -%}
-  <link
-    rel="preload"
-    as="font"
-    href="{{ settings.type_subheading_font | font_url }}"
-    type="font/woff2"
-    crossorigin
-    fetchpriority="low"
-  >
-{%- endunless -%}
-{%- unless settings.type_heading_font.system? -%}
-  <link
-    rel="preload"
-    as="font"
-    href="{{ settings.type_heading_font | font_url }}"
-    type="font/woff2"
-    crossorigin
-    fetchpriority="low"
-  >
-{%- endunless -%}
-{%- unless settings.type_accent_font.system? -%}
-  <link
-    rel="preload"
-    as="font"
-    href="{{ settings.type_accent_font | font_url }}"
-    type="font/woff2"
-    crossorigin
-    fetchpriority="low"
-  >
-{%- endunless -%}
+  <style>
+    @font-face {
+      font-family: "Stevie Sans";
+      src: url("{{ 'stevie-sans.woff2' | asset_url }}") format("woff2");
+    }
+  </style>
+{% else %}
+  {% assign font_settings = 'type_body_font,
+     type_subheading_font,
+     type_heading_font,
+     type_accent_font'
+    | split: ','
+  %}
+
+  {% for font in font_settings %}
+    {% assign current_font = settings[font] %}
+    {% unless current_font.system? %}
+      <link
+        rel="preload"
+        as="font"
+        href="{{ current_font | font_url }}"
+        type="font/woff2"
+        crossorigin
+        fetchpriority="low"
+      >
+    {% endunless %}
+  {% endfor %}
+{% endif %}
+
 {% # theme-check-enable %}

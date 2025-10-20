@@ -1,6 +1,7 @@
 
 
 {% liquid
+  assign section_index = section.index 
   assign media_count = 0
   if section.settings.image_1 != blank and section.settings.image_2 != blank
     assign media_width_desktop = 100 | divided_by: 2 | append: 'vw'
@@ -207,7 +208,6 @@
       --hero-min-height: {{ section.settings.section_height_custom }}svh;
     {% elsif section.settings.section_height == "full-screen" %}
        --hero-min-height: 100svh;
-       --header-group-height: 0;
     {% else %}
       --hero-min-height: var(--section-height-{{ section.settings.section_height }});
     {% endif %}

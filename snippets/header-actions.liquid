@@ -9,7 +9,9 @@
 >
   {% if shop.customer_accounts_enabled %}
     {% render 'account-popover' %}
-    {% render 'account-drawer' %}
+    <div class="hide lg:block">
+      {% render 'account-drawer' %}
+    </div>
   {% endif %}
 
   {% if settings.cart_type == 'drawer' and template.name != 'cart' %}
@@ -221,19 +223,18 @@
   }
 
   .header-actions__cart-icon {
-    --cart-bubble-size: 20px;
-    --cart-bubble-top: 4.5px;
-    --cart-bubble-right: 2.5px;
-
     position: relative;
+    display: flex;
+    align-items: center;
+    font-size: var(--font-size--sm)
   }
 
-  .header-actions__cart-icon .cart-bubble {
+  /* .header-actions__cart-icon .cart-bubble {
     position: absolute;
     width: var(--cart-bubble-size, 20px);
     top: var(--cart-bubble-top);
     right: var(--cart-bubble-right);
-  }
+  } */
 
   .header-actions__cart-icon .cart-bubble__text,
   .cart-drawer__heading .cart-bubble__text {

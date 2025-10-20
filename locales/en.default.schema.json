@@ -671,6 +671,8 @@
     "washing": "Washing",
     "wide": "Wide",
     "youtube": "YouTube",
+    "custom_font": "Enable custom font",
+    "select_font": "Select font"
   },
   "settings": {
     "accordion": "Accordion",
@@ -1073,7 +1075,7 @@
     "wrap": "Wrap",
     "z_index": "Z-index",
     "product_corner_radius": "Product corner radius",
-    "card_corner_radius": "Card corner radius"
+    "card_corner_radius": "Card corner radius",
   },
   "text_defaults": {
     "accordion_heading": "Accordion heading",

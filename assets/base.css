@@ -690,6 +690,26 @@ p:empty {
   position: relative;
 }
 
+.hide {
+  display: none;
+}
+
+.block {
+  display: block;
+}
+
+@media (min-width: 1024px) {
+  .lg\:hidden {
+    display: none;
+  }
+
+  .lg\:block {
+    display: block;
+  }
+}
+
+
+
 /* Icons */
 .icon-success,
 .icon-error {
@@ -2575,7 +2595,7 @@ product-price.text-block:is(.h1, .h2, .h3, .h4, .h5, .h6) > *:not(.tax-note) {
 }
 
 /* Cart bubble */
-.cart-bubble {
+/*.cart-bubble {
   --cart-padding: 0.2em;
 
   position: relative;
@@ -2591,16 +2611,15 @@ product-price.text-block:is(.h1, .h2, .h3, .h4, .h5, .h6) > *:not(.tax-note) {
   padding-inline: var(--cart-padding);
 }
 
-.cart-bubble__background {
+ .cart-bubble__background {
   position: absolute;
   inset: 0;
   background-color: var(--color-primary-button-background);
   border-radius: var(--style-border-radius-lg);
-}
+} */
 
 .cart-bubble__text {
-  font-size: var(--font-size--2xs);
-  z-index: var(--layer-flat);
+  font-size: var(--font-size--sm);
   line-height: 1;
   display: flex;
   align-items: center;
