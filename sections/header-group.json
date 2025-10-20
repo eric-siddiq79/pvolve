@@ -45,16 +45,64 @@
       "type": "header",
       "blocks": {
         "header-logo": {
-          "type": "_header-logo",
+          "type": "_header-mega-menu",
           "static": true,
-          "settings": {
-            "hide_logo_on_home_page": false,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
+          "settings": {},
+          "blocks": {
+            "header_menu_item_f49xjW": {
+              "type": "_header-menu-item",
+              "name": "Menu Item",
+              "settings": {
+                "title": "Shop",
+                "url": "shopify://collections"
+              },
+              "blocks": {
+                "header_sub_menu_3Jphmw": {
+                  "type": "_header-sub-menu",
+                  "settings": {
+                    "menu": "shop-menu"
+                  },
+                  "blocks": {}
+                },
+                "header_sub_menu_card_YfHfrr": {
+                  "type": "_header-sub-menu-card",
+                  "settings": {
+                    "image": "shopify://shop_images/sculpt-9.webp",
+                    "title": "Introducing: Sculpt 9",
+                    "url": "#"
+                  },
+                  "blocks": {}
+                },
+                "header_sub_menu_card_LyhfrL": {
+                  "type": "_header-sub-menu-card",
+                  "settings": {
+                    "image": "shopify://shop_images/equipment.webp",
+                    "title": "Equipment",
+                    "url": "#"
+                  },
+                  "blocks": {}
+                },
+                "header_sub_menu_card_qAaep3": {
+                  "type": "_header-sub-menu-card",
+                  "settings": {
+                    "image": "shopify://shop_images/quiz.webp",
+                    "title": "Not Sure? Take our Quiz",
+                    "url": "#"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "header_sub_menu_3Jphmw",
+                "header_sub_menu_card_YfHfrr",
+                "header_sub_menu_card_LyhfrL",
+                "header_sub_menu_card_qAaep3"
+              ]
+            }
           },
-          "blocks": {}
+          "block_order": [
+            "header_menu_item_f49xjW"
+          ]
         }
       },
       "settings": {
