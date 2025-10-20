@@ -1,9 +1,19 @@
 
-{% content_for 'blocks' %}
+<li class="menu-list__item">
+    <a href="{{ block.settings.url }}" class="menu-list__link">{{ block.settings.title }}</a>
+    {%  if block.blocks.size > 0 %} 
+        <div class="mega-menu">
+            <div class="mega-menu__grid">
+                {% content_for 'blocks' %}
+            </div>
+        </div>
+    {% endif; %}
+</li>
 
 {% schema %}
 {
     "name": "Menu Item",
+    "tag": null,
     "blocks": [{"type": "_header-sub-menu"}, {"type": "_header-sub-menu-card"}],
     "settings": [
         {

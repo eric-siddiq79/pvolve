@@ -1,6 +1,22 @@
+{% if block.settings.image != blank %}
+    <li class="menu-list__item">
+        <div class="menu-card">
+            <div class="menu-card__figure">
+                {{ block.settings.image | image_url: width: 312, height: 388 |  image_tag }}
+            </div>
+            <div class="menu-card__content">
+                <h3 class="menu-card__title">{{ block.settings.title }}</h3>
+                <a href="{{ block.settings.url }}" class="menu-card__link">{{ block.settings.link }}</a>
+            </div>
+        </div>
+    </li>    
+{% endif %}
+
+
 {% schema %}
 {
   "name": "Menu Card",
+  "tag": null,
   "settings": [
     {
       "type": "image_picker",

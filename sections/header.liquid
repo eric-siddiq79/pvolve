@@ -48,15 +48,7 @@
   endcapture
 
   capture menu
-    content_for 'block', type: '_header-menu', id: 'header-menu'
-  endcapture
-
-  capture mobile_menu
-    content_for 'block', type: '_header-menu', id: 'header-menu', variant: 'mobile'
-  endcapture
-
-  capture navigation_bar
-    content_for 'block', type: '_header-menu', id: 'header-menu', variant: 'navigation_bar', transparent: transparent
+    content_for 'block', type: '_header-mega-menu', id: 'header-logo'
   endcapture
 
   capture actions
@@ -653,6 +645,7 @@
   "name": "t:names.header",
   "tag": "header",
   "class": "header-section",
+  "blocks" : [{ "type": "_header-menu"}, { "type": "_header-mega-menu"}],
   "settings": [
     {
       "type": "header",
@@ -1079,7 +1072,6 @@
       "default": "default",
       "visible_if": "{{ section.settings.enable_transparent_header_collection }}"
     }
-  ],
-  "presets": []
+  ]
 }
 {% endschema %}

@@ -1,0 +1,20 @@
+
+
+<div class="mega-menu">
+  <ul class="menu-list">
+    {% content_for 'blocks' %}
+  </ul>
+</div>
+
+{% schema %}
+{
+  "name": "Mega Menu",
+  "tag": null,
+  "blocks": [{"type": "_header-menu-item"}, {"type": "button"}],
+  "presets": [
+    {
+      "name": "Mega Menu"
+    }
+  ]
+}
+{% endschema %}
