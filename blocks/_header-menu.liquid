@@ -63,7 +63,8 @@
       style="--submenu-animation-speed: {{ animation_speed }}ms;"
     >
       <div class="header-menu__inner">
-        {%- render 'header-menu' %}
+        {% comment %} {%- render 'header-menu-mega' %} {% endcomment %}
+         {% content_for 'blocks' %}
       </div>
 
       <script
@@ -595,6 +596,7 @@
 {
   "name": "t:names.menu",
   "tag": null,
+  "blocks": [{"type": "_header-menu-item"}, {"type": "_header-menu-button"}],
   "settings": [
     {
       "type": "link_list",

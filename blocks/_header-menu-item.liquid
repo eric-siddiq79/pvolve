@@ -1,0 +1,103 @@
+{% liquid
+    assign block_settings = block.settings
+    assign menu_content_type = block_settings.menu_style | default: 'text'
+    assign image_border_radius = block_settings.image_border_radius
+    assign color_scheme_classes = ''
+    assign color_scheme_setting_id = 'color_scheme_' | append: section.settings.menu_row
+    assign current_color_scheme = block_settings.color_scheme
+    assign parent_color_scheme = section.settings[color_scheme_setting_id]
+  
+    if parent_color_scheme.id != current_color_scheme.id
+      assign color_scheme_classes = ' color-' | append: current_color_scheme
+    endif
+  
+    # Check if header and menu colors match. This is used to apply different padding styles in css
+    if parent_color_scheme.settings.background.rgb == current_color_scheme.settings.background.rgb
+      assign color_scheme_classes = color_scheme_classes | append: ' color-scheme-matches-parent'
+    endif
+  
+   # if block_settings.menu_style == 'featured_collections'
+    #   assign ratio = block_settings.featured_collections_aspect_ratio
+   #  elsif block_settings.menu_style == 'featured_products'
+    #   assign ratio = block_settings.featured_products_aspect_ratio
+   #  endif 
+  %}
+
+<li
+    role="presentation"
+    class="menu-list__list-item"
+    on:focus="/activate"
+    on:blur="/deactivate"
+    on:pointerenter="/activate"
+    on:pointerleave="/deactivate"
+  >
+    <a
+      href="{{ block.settings.url }}"
+      data-skip-node-update="true"
+      class="menu-list__link"
+      {%- if block.blocks.size > 0 -%}
+        aria-controls="submenu-{{ forloop.index }}"
+        aria-haspopup="true"
+        aria-expanded="false"
+      {%- endif -%}
+      ref="menuitem"
+    >
+      <span class="menu-list__link-title">{{- block.settings.title -}}</span>
+    </a>
+    {%- if block.blocks.size > 0 -%}
+        <div class="menu-list__submenu{{ color_scheme_classes }}" ref="submenu[]">
+            <div
+                id="submenu-{{ forloop.index }}"
+                class="menu-list__submenu-inner"
+                style="{% render 'submenu-font-styles', settings: block_settings %}"
+            >
+                {% assign list_id = 'MegaMenuList-' | append: forloop.index %}
+                {% comment %} {% render 'mega-menu',
+                section: section,
+                parent_link: link,
+                id: list_id,
+                menu_content_type: menu_content_type,
+                content_aspect_ratio: ratio,
+                image_border_radius: image_border_radius
+                %} {% endcomment %}
+                {% content_for 'blocks' %}
+            </div>
+        </div>
+        <div class="mega">
+            
+        </div>
+    {%- endif -%}
+  </li>
+
+{% schema %}
+{
+    "name": "Menu Item",
+    "tag": null,
+    "blocks": [{"type": "_header-sub-menu"}, {"type": "_header-sub-menu-card"}],
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Label"
+        },
+        {
+            "type": "url",
+            "id": "url",
+            "label": "Link"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Menu Item",
+            "blocks": [
+                {
+                    "type": "_header-sub-menu"
+                },
+                {
+                    "type": "_header-sub-menu-card"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

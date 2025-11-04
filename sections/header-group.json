@@ -11,10 +11,10 @@
   "type": "header",
   "name": "Header",
   "sections": {
-    "header_announcements_9jGBFp": {
+    "header_announcements": {
       "type": "header-announcements",
       "blocks": {
-        "announcement_BxgCk9": {
+        "announcement": {
           "type": "_announcement",
           "settings": {
             "text": "Welcome to our store",
@@ -29,11 +29,11 @@
         }
       },
       "block_order": [
-        "announcement_BxgCk9"
+        "announcement"
       ],
       "name": "t:names.announcement_bar",
       "settings": {
-        "speed": 5,
+        "speed": 3,
         "section_width": "page-width",
         "color_scheme": "scheme-1",
         "divider_width": 1,
@@ -112,7 +112,7 @@
     }
   },
   "order": [
-    "header_announcements_9jGBFp",
+    "header_announcements",
     "header_section"
   ]
 }
