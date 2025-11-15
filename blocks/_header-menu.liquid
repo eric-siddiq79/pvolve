@@ -64,7 +64,9 @@
     >
       <div class="header-menu__inner">
         {% comment %} {%- render 'header-menu-mega' %} {% endcomment %}
-         {% content_for 'blocks' %}
+         <ul class="list-unstyled flex items-center menu-list__list" role="menubar">
+            {% content_for 'blocks' %}
+         </ul>
       </div>
 
       <script
